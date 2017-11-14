@@ -16,13 +16,13 @@ import {
   transformWhere,
   transformUpdate,
 } from './MongoTransform';
-// $FlowFixMe
+// @flow-disable-next
 import Parse                 from 'parse/node';
-// $FlowFixMe
+// @flow-disable-next
 import _                     from 'lodash';
 import defaults              from '../../../defaults';
 
-// $FlowFixMe
+// @flow-disable-next
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const ReadPreference = mongodb.ReadPreference;
@@ -93,7 +93,7 @@ export class MongoStorageAdapter implements StorageAdapter, IndexingStorageAdapt
   _collectionPrefix: string;
   _mongoOptions: Object;
   // Public
-  connectionPromise;
+  connectionPromise: Promise<any>;
   database: any;
   _maxTimeMS: ?number;
   canSortOnJoinTables: boolean;
@@ -439,7 +439,7 @@ export class MongoStorageAdapter implements StorageAdapter, IndexingStorageAdapt
   }
 
   _parseReadPreference(readPreference: ?string): ?string {
-    if (readPreference) {
+    if (readPreference != null) {
       switch (readPreference) {
       case 'PRIMARY':
         readPreference = ReadPreference.PRIMARY;
