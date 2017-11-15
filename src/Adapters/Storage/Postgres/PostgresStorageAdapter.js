@@ -23,7 +23,7 @@ const debug = function(...args: any) {
 import { StorageAdapter }    from '../StorageAdapter';
 import type { SchemaType,
   QueryType,
-  QueryOptionsType } from '../StorageAdapter';
+  QueryOptions } from '../StorageAdapter';
 
 const parseTypeToPostgresType = type => {
   switch (type.type) {
@@ -1203,7 +1203,7 @@ export class PostgresStorageAdapter implements StorageAdapter {
     });
   }
 
-  find(className: string, schema: SchemaType, query: QueryType, { skip, limit, sort, keys }: QueryOptionsType) {
+  find(className: string, schema: SchemaType, query: QueryType, { skip, limit, sort, keys }: QueryOptions) {
     debug('find', className, query, {skip, limit, sort, keys });
     const hasLimit = limit !== undefined;
     const hasSkip = skip !== undefined;
